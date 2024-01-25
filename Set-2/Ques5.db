@@ -1,3 +1,20 @@
+Design an Entity-Relationship schema for a database of events. The database should contain
+the information about:
+● Users - A user will have name, email, and phone no.
+● Event - An event will have title, start-date, end date and status which can be - Pending,
+In-progress, Completed and Canceled
+The Information that must be captured in the database is related to following functionalities -
+1 - A user can create an event, and edit it
+2 - A user can invite other users to his events, and these guests can either accept or Reject that
+invitation
+3- For events that span across multiple days, a guest may be invited for the whole event , or for
+individual days only
+As part of the solution, either create an Entity Relationship schema, or create a relational
+database schema that covers the above requirements.
+
+
+
+
 CREATE TABLE Users (
     UserID INT PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
