@@ -1,0 +1,34 @@
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Phone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Events (
+    EventID INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    StartDate DATETIME NOT NULL,
+    EndDate DATETIME NOT NULL,
+    Status ENUM('Pending', 'In-progress', 'Completed', 'Canceled') NOT NULL,
+    CreatorUserID INT,
+    FOREIGN KEY (CreatorUserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE Invitations (
+    InvitationID INT PRIMARY KEY,
+    EventID INT,
+    InviterUserID INT,
+    InviteeUserID INT,
+    InvitationStatus ENUM('Accept', 'Reject', 'Pending') NOT NULL,
+    FOREIGN KEY (EventID) REFERENCES Events(EventID),
+    FOREIGN KEY (InviterUserID) REFERENCES Users(UserID),
+    FOREIGN KEY (InviteeUserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE EventDays (
+    EventDayID INT PRIMARY KEY,
+    EventID INT,
+    Date DATE NOT NULL,
+    FOREIGN KEY (EventID) REFERENCES Events(EventID)
+);
